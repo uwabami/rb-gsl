@@ -847,7 +847,7 @@ void Init_gsl_sf_bessel(VALUE module)
   rb_define_module_function(mgsl_sf_bessel, "kl_scaled_array",  rb_gsl_sf_bessel_kl_scaled_array, 2);
   rb_define_module_function(mgsl_sf_bessel, "Jnu",  rb_gsl_sf_bessel_Jnu, 2);
   rb_define_module_function(mgsl_sf_bessel, "Jnu_e",  rb_gsl_sf_bessel_Jnu_e, 2);
-  rb_define_module_function(mgsl_sf_bessel, "sequence_Jnu_e",  rb_gsl_sf_bessel_sequence_Jnu_e, 3);
+  rb_define_module_function(mgsl_sf_bessel, "sequence_Jnu_e",  rb_gsl_sf_bessel_sequence_Jnu_e, -1);
 
   rb_define_module_function(mgsl_sf_bessel, "Ynu",  rb_gsl_sf_bessel_Ynu, 2);
   rb_define_module_function(mgsl_sf_bessel, "Ynu_e",  rb_gsl_sf_bessel_Ynu_e, 2);

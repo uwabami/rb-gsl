@@ -1424,7 +1424,7 @@ static VALUE rb_gsl_matrix_complex_arccoth(VALUE obj)
   return rb_gsl_matrix_complex_XXX_complex(obj, gsl_complex_arccoth);
 }
 
-static VALUE rb_gsl_matrix_complex_indgen_bang(int argc, VALUE *argv[], VALUE obj)
+static VALUE rb_gsl_matrix_complex_indgen_bang(int argc, VALUE argv[], VALUE obj)
 {
   gsl_matrix_complex *m = NULL;
   double start = 0, step = 1, x;

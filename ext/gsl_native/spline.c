@@ -398,7 +398,7 @@ void Init_gsl_spline(VALUE module)
   rb_define_alias(cgsl_spline, "deriv_e", "eval_deriv_e");
   rb_define_method(cgsl_spline, "eval_deriv2_e", rb_gsl_spline_eval_deriv2_e, 1);
   rb_define_alias(cgsl_spline, "deri2v_e", "eval_deriv2_e");
-  rb_define_method(cgsl_spline, "eval_integ_e", rb_gsl_spline_eval_integ_e, 1);
+  rb_define_method(cgsl_spline, "eval_integ_e", rb_gsl_spline_eval_integ_e, 2);
   rb_define_alias(cgsl_spline, "integ_e", "eval_integ_e");
 
   rb_define_method(cgsl_spline, "info", rb_gsl_spline_info, 0);

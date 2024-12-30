@@ -852,7 +852,7 @@ void Init_gsl_monte(VALUE module)
   rb_define_singleton_method(cgsl_monte_function, "alloc", rb_gsl_monte_function_new, -1);
 
   rb_define_method(cgsl_monte_function, "proc", rb_gsl_monte_function_proc, 0);
-  rb_define_method(cgsl_monte_function, "eval", rb_gsl_monte_function_eval, 0);
+  rb_define_method(cgsl_monte_function, "eval", rb_gsl_monte_function_eval, 1);
   rb_define_alias(cgsl_monte_function, "call", "eval");
   rb_define_method(cgsl_monte_function, "params", rb_gsl_monte_function_params, 0);
   rb_define_method(cgsl_monte_function, "set", rb_gsl_monte_function_set_f, -1);

@@ -434,9 +434,9 @@ void Init_gsl_ntuple(VALUE module)
   rb_define_singleton_method(cgsl_ntuple, "create", rb_gsl_ntuple_new, -1);
   rb_define_singleton_method(cgsl_ntuple, "alloc", rb_gsl_ntuple_new, -1);
   rb_define_singleton_method(cgsl_ntuple, "open", rb_gsl_ntuple_open, -1);
-  rb_define_singleton_method(cgsl_ntuple, "close", rb_gsl_ntuple_close, 0);
+  rb_define_singleton_method(cgsl_ntuple, "close", rb_gsl_ntuple_close, 1);
 
-  rb_define_method(cgsl_ntuple, "size", rb_gsl_ntuple_size, 0);
+  rb_define_method(cgsl_ntuple, "size", rb_gsl_ntuple_size, 1);
   rb_define_method(cgsl_ntuple, "write", rb_gsl_ntuple_write, 0);
   rb_define_method(cgsl_ntuple, "bookdata", rb_gsl_ntuple_bookdata, 0);
 

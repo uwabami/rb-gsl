@@ -81,8 +81,8 @@ void Init_gsl_ieee(VALUE module)
   rb_define_singleton_method(mgsl_ieee, "fprintf",
                              rb_gsl_ieee_fprintf_double, -1);
   rb_define_singleton_method(mgsl_ieee, "printf",
-                             rb_gsl_ieee_printf_double, -1);
+                             rb_gsl_ieee_printf_double, 1);
   rb_define_singleton_method(mgsl_ieee, "printf_double",
-                             rb_gsl_ieee_printf_double, -1);
+                             rb_gsl_ieee_printf_double, 1);
 
 }

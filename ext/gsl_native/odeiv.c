@@ -882,7 +882,7 @@ void Init_gsl_odeiv(VALUE module)
   rb_define_singleton_method(cgsl_odeiv_control, "standard_alloc", rb_gsl_odeiv_control_standard_new, 4);
   rb_define_singleton_method(cgsl_odeiv_control, "y_new", rb_gsl_odeiv_control_y_new, 2);
   rb_define_singleton_method(cgsl_odeiv_control, "yp_new", rb_gsl_odeiv_control_yp_new, 2);
-  rb_define_singleton_method(cgsl_odeiv_control, "scaled_alloc", rb_gsl_odeiv_control_scaled_new, 5);
+  rb_define_singleton_method(cgsl_odeiv_control, "scaled_alloc", rb_gsl_odeiv_control_scaled_new, 6);
 
   rb_define_method(cgsl_odeiv_control, "init", rb_gsl_odeiv_control_init, 4);
   rb_define_method(cgsl_odeiv_control, "name", rb_gsl_odeiv_control_name, 0);

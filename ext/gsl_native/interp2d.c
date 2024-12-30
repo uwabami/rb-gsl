@@ -15,7 +15,7 @@ VALUE cgsl_interp2d_accel; /* this is used also in spline2d.c */
 extern VALUE cgsl_vector, cgsl_matrix;
 
 static VALUE rb_gsl_interp2d_alloc(int argc, VALUE *argv, VALUE self)
-{ 
+{
   rb_gsl_interp2d *sp = NULL;
   const gsl_interp2d_type *T = NULL;
   double *xptr = NULL, *yptr = NULL, *zptr = NULL;
@@ -63,8 +63,8 @@ static VALUE rb_gsl_interp2d_init(VALUE self, VALUE xarr, VALUE yarr, VALUE zarr
 }
 
 static VALUE rb_gsl_interp_evaluate(
-  VALUE self, VALUE xarr, VALUE yarr, VALUE zarr, VALUE xx, VALUE yy, 
-    double (*eval)(const gsl_interp2d * interp, 
+  VALUE self, VALUE xarr, VALUE yarr, VALUE zarr, VALUE xx, VALUE yy,
+    double (*eval)(const gsl_interp2d * interp,
       const double xa[], const double ya[], const double za[],
       const double x, const double y, gsl_interp_accel * xacc,
       gsl_interp_accel * yacc))
@@ -77,7 +77,7 @@ static VALUE rb_gsl_interp_evaluate(
     xx = yy;
     yy = temp;
   }
-  
+
   rb_gsl_interp2d *rgi = NULL;
   double *xptr = NULL, *yptr = NULL, *zptr = NULL;
   gsl_vector *vx = NULL, *vy = NULL, *vnew = NULL;
@@ -89,19 +89,19 @@ static VALUE rb_gsl_interp_evaluate(
   Data_Get_Struct(self, rb_gsl_interp2d, rgi);
   xptr = get_vector_ptr(xarr, &stridex, &xsize);
   if (xsize != rgi->p->xsize ) {
-    rb_raise(rb_eTypeError, "size mismatch (xa:%d != %d)",  (int) xsize, 
+    rb_raise(rb_eTypeError, "size mismatch (xa:%d != %d)",  (int) xsize,
       (int) rgi->p->xsize);
   }
 
   yptr = get_vector_ptr(yarr, &stridey, &ysize);
   if (ysize != rgi->p->ysize ) {
-    rb_raise(rb_eTypeError, "size mismatch (ya:%d != %d)", (int) ysize, 
+    rb_raise(rb_eTypeError, "size mismatch (ya:%d != %d)", (int) ysize,
       (int) rgi->p->ysize);
   }
 
   zptr = get_vector_ptr(zarr, &stridez, &zsize);
   if (zsize != xsize*ysize ) {
-    rb_raise(rb_eTypeError, "size mismatch (za:%d != %d)", (int) zsize, 
+    rb_raise(rb_eTypeError, "size mismatch (za:%d != %zu)", (int) zsize,
       (int) xsize*ysize);
   }
 
@@ -145,7 +145,7 @@ static VALUE rb_gsl_interp_evaluate(
       vnew = gsl_vector_alloc(vx->size);
 
       for (i = 0; i < vx->size; i++) {
-        val = (*eval)(rgi->p, xptr, yptr, zptr, gsl_vector_get(vx, i), 
+        val = (*eval)(rgi->p, xptr, yptr, zptr, gsl_vector_get(vx, i),
           gsl_vector_get(vy, i), rgi->xacc, rgi->yacc);
         gsl_vector_set(vnew, i, val);
       }
@@ -199,7 +199,7 @@ static void rb_gsl_interp2d_define_const(VALUE self)
 }
 
 const gsl_interp2d_type* get_interp2d_type(VALUE t)
-{ 
+{
   int type;
   char name[32];
 
@@ -212,7 +212,7 @@ const gsl_interp2d_type* get_interp2d_type(VALUE t)
         case 1: return gsl_interp2d_bilinear; break;
         default:
           rb_raise(rb_eRuntimeError, "Cannot recognize type %d.\n", type);
-      } 
+      }
     case T_STRING:
       strcpy(name, STR2CSTR(t));
 

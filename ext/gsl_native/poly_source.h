@@ -1811,9 +1811,9 @@ void FUNCTION(Init_gsl_poly,init)(VALUE module)
                              FUNCTION(rb_gsl_poly,deconv2), 2);
 
   rb_define_method(GSL_TYPE(cgsl_poly), "reduce",
-                   FUNCTION(rb_gsl_poly,reduce), 1);
-  rb_define_method(GSL_TYPE(cgsl_poly), "deriv", FUNCTION(rb_gsl_poly,deriv), 1);
-  rb_define_method(GSL_TYPE(cgsl_poly), "integ", FUNCTION(rb_gsl_poly,integ), 1);
+                   FUNCTION(rb_gsl_poly,reduce), 0);
+  rb_define_method(GSL_TYPE(cgsl_poly), "deriv", FUNCTION(rb_gsl_poly,deriv), 0);
+  rb_define_method(GSL_TYPE(cgsl_poly), "integ", FUNCTION(rb_gsl_poly,integ), 0);
 
 /*****/
 

@@ -706,20 +706,20 @@ void Init_gsl_stats(VALUE module)
 
   /*****/
 
-  rb_define_singleton_method(mgsl_stats, "wmean", rb_gsl_stats_wmean2, -1);
-  rb_define_singleton_method(mgsl_stats, "wvariance", rb_gsl_stats_wvariance2, -1);
-  rb_define_singleton_method(mgsl_stats, "wvariance_m", rb_gsl_stats_wvariance_m2, -1);
-  rb_define_singleton_method(mgsl_stats, "wsd", rb_gsl_stats_wsd2, -1);
-  rb_define_singleton_method(mgsl_stats, "wsd_m", rb_gsl_stats_wsd_m2, -1);
+  rb_define_singleton_method(mgsl_stats, "wmean", rb_gsl_stats_wmean2, 2);
+  rb_define_singleton_method(mgsl_stats, "wvariance", rb_gsl_stats_wvariance2, 2);
+  rb_define_singleton_method(mgsl_stats, "wvariance_m", rb_gsl_stats_wvariance_m2, 3);
+  rb_define_singleton_method(mgsl_stats, "wsd", rb_gsl_stats_wsd2, 2);
+  rb_define_singleton_method(mgsl_stats, "wsd_m", rb_gsl_stats_wsd_m2, 3);
   rb_define_singleton_method(mgsl_stats, "wvariance_with_fixed_mean",
-                             rb_gsl_stats_wvariance_with_fixed_mean2, -1);
+                             rb_gsl_stats_wvariance_with_fixed_mean2, 3);
   rb_define_singleton_method(mgsl_stats, "wsd_with_fixed_mean",
-                             rb_gsl_stats_wsd_with_fixed_mean2, -1);
-  rb_define_singleton_method(mgsl_stats, "wabsdev", rb_gsl_stats_wabsdev2, -1);
-  rb_define_singleton_method(mgsl_stats, "wabsdev_m", rb_gsl_stats_wabsdev_m2, -1);
-  rb_define_singleton_method(mgsl_stats, "wskew", rb_gsl_stats_wskew2, -1);
+                             rb_gsl_stats_wsd_with_fixed_mean2, 3);
+  rb_define_singleton_method(mgsl_stats, "wabsdev", rb_gsl_stats_wabsdev2, 2);
+  rb_define_singleton_method(mgsl_stats, "wabsdev_m", rb_gsl_stats_wabsdev_m2, 3);
+  rb_define_singleton_method(mgsl_stats, "wskew", rb_gsl_stats_wskew2, 2);
   rb_define_singleton_method(mgsl_stats, "wskew_m_sd", rb_gsl_stats_wskew_m2, 4);
-  rb_define_singleton_method(mgsl_stats, "wkurtosis", rb_gsl_stats_wkurtosis2, -1);
+  rb_define_singleton_method(mgsl_stats, "wkurtosis", rb_gsl_stats_wkurtosis2, 2);
   rb_define_singleton_method(mgsl_stats, "wkurtosis_m_sd", rb_gsl_stats_wkurtosis_m2, 4);
 
   /*****/
@@ -747,12 +747,12 @@ void Init_gsl_stats(VALUE module)
   rb_define_alias(cgsl_vector, "wabsdev_m", "stats_wabsdev_m");
   rb_define_method(cgsl_vector, "stats_wskew", rb_gsl_stats_wskew, -1);
   rb_define_alias(cgsl_vector, "wskew", "stats_wskew");
-  rb_define_method(cgsl_vector, "stats_wskew_m_sd", rb_gsl_stats_wskew_m_sd, 2);
+  rb_define_method(cgsl_vector, "stats_wskew_m_sd", rb_gsl_stats_wskew_m_sd, 3);
   rb_define_alias(cgsl_vector, "wskew_m_sd", "stats_wskew_m_sd");
   rb_define_method(cgsl_vector, "stats_wkurtosis", rb_gsl_stats_wkurtosis, -1);
   rb_define_alias(cgsl_vector, "wkurtosis", "stats_wkurtosis");
   rb_define_method(cgsl_vector, "stats_wkurtosis_m_sd",
-                   rb_gsl_stats_wkurtosis_m_sd, 2);
+                   rb_gsl_stats_wkurtosis_m_sd, 3);
   rb_define_alias(cgsl_vector, "wkurtosis_m_sd", "stats_wkurtosis_m_sd");
 
   /*****/

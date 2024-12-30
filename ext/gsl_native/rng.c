@@ -465,21 +465,21 @@ static VALUE rb_gsl_rng_name(VALUE obj)
   return rb_str_new2(gsl_rng_name(r));
 }
 
-static VALUE rb_gsl_rng_max(VALUE obj, VALUE s)
+static VALUE rb_gsl_rng_max(VALUE obj)
 {
   gsl_rng *r = NULL;
   Data_Get_Struct(obj, gsl_rng, r);
   return UINT2NUM(gsl_rng_max(r));
 }
 
-static VALUE rb_gsl_rng_min(VALUE obj, VALUE s)
+static VALUE rb_gsl_rng_min(VALUE obj)
 {
   gsl_rng *r = NULL;
   Data_Get_Struct(obj, gsl_rng, r);
   return UINT2NUM(gsl_rng_min(r));
 }
 
-static VALUE rb_gsl_rng_size(VALUE obj, VALUE s)
+static VALUE rb_gsl_rng_size(VALUE obj)
 {
   gsl_rng *r = NULL;
   Data_Get_Struct(obj, gsl_rng, r);

@@ -474,7 +474,7 @@ static VALUE rb_gsl_histogram2d_add(VALUE obj, VALUE hh2)
     Need_Float(hh2);
     gsl_histogram2d_shift(hnew, NUM2DBL(hh2));
   }
-  return Data_Wrap_Struct(CLASS_OF(h1), 0, gsl_histogram2d_free, hnew);
+  return Data_Wrap_Struct(CLASS_OF((VALUE)h1), 0, gsl_histogram2d_free, hnew);
 }
 
 static VALUE rb_gsl_histogram2d_sub(VALUE obj, VALUE hh2)
@@ -489,7 +489,7 @@ static VALUE rb_gsl_histogram2d_sub(VALUE obj, VALUE hh2)
     Need_Float(hh2);
     gsl_histogram2d_shift(hnew, -NUM2DBL(hh2));
   }
-  return Data_Wrap_Struct(CLASS_OF(h1), 0, gsl_histogram2d_free, hnew);
+  return Data_Wrap_Struct(CLASS_OF((VALUE)h1), 0, gsl_histogram2d_free, hnew);
 }
 
 static VALUE rb_gsl_histogram2d_mul(VALUE obj, VALUE hh2)
@@ -504,7 +504,7 @@ static VALUE rb_gsl_histogram2d_mul(VALUE obj, VALUE hh2)
     Need_Float(hh2);
     gsl_histogram2d_scale(hnew, NUM2DBL(hh2));
   }
-  return Data_Wrap_Struct(CLASS_OF(h1), 0, gsl_histogram2d_free, hnew);
+  return Data_Wrap_Struct(CLASS_OF((VALUE)h1), 0, gsl_histogram2d_free, hnew);
 }
 
 static VALUE rb_gsl_histogram2d_div(VALUE obj, VALUE hh2)
@@ -519,7 +519,7 @@ static VALUE rb_gsl_histogram2d_div(VALUE obj, VALUE hh2)
     Need_Float(hh2);
     gsl_histogram2d_scale(hnew, 1.0/NUM2DBL(hh2));
   }
-  return Data_Wrap_Struct(CLASS_OF(h1), 0, gsl_histogram2d_free, hnew);
+  return Data_Wrap_Struct(CLASS_OF((VALUE)h1), 0, gsl_histogram2d_free, hnew);
 }
 
 static VALUE rb_gsl_histogram2d_scale2(VALUE obj, VALUE val)
@@ -529,7 +529,7 @@ static VALUE rb_gsl_histogram2d_scale2(VALUE obj, VALUE val)
   Data_Get_Struct(obj, gsl_histogram2d, h1);
   hnew = gsl_histogram2d_clone(h1);
   gsl_histogram2d_scale(hnew, NUM2DBL(val));
-  return Data_Wrap_Struct(CLASS_OF(h1), 0, gsl_histogram2d_free, hnew);
+  return Data_Wrap_Struct(CLASS_OF((VALUE)h1), 0, gsl_histogram2d_free, hnew);
 }
 
 static VALUE rb_gsl_histogram2d_shift2(VALUE obj, VALUE val)
@@ -539,7 +539,7 @@ static VALUE rb_gsl_histogram2d_shift2(VALUE obj, VALUE val)
   Data_Get_Struct(obj, gsl_histogram2d, h1);
   hnew = gsl_histogram2d_clone(h1);
   gsl_histogram2d_shift(hnew, NUM2DBL(val));
-  return Data_Wrap_Struct(CLASS_OF(h1), 0, gsl_histogram2d_free, hnew);
+  return Data_Wrap_Struct(CLASS_OF((VALUE)h1), 0, gsl_histogram2d_free, hnew);
 }
 
 static VALUE rb_gsl_histogram2d_fwrite(VALUE obj, VALUE io)
@@ -1006,7 +1006,7 @@ void Init_gsl_histogram2d(VALUE module)
   rb_define_method(cgsl_histogram2d, "fwrite2",  rb_gsl_histogram2d_fwrite2, 1);
   rb_define_method(cgsl_histogram2d, "fread2",  rb_gsl_histogram2d_fread2, 1);
   rb_define_method(cgsl_histogram2d, "fprintf",  rb_gsl_histogram2d_fprintf, -1);
-  rb_define_method(cgsl_histogram2d, "fscanf",  rb_gsl_histogram2d_fscanf, 3);
+  rb_define_method(cgsl_histogram2d, "fscanf",  rb_gsl_histogram2d_fscanf, 1);
 
   cgsl_histogram2d_pdf = rb_define_class_under(cgsl_histogram2d, "Pdf", cGSL_Object);
 
@@ -1039,4 +1039,3 @@ void Init_gsl_histogram2d(VALUE module)
 #ifdef CHECK_HISTOGRAM2D
 #undef CHECK_HISTOGRAM2D
 #endif
-

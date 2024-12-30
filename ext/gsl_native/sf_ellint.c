@@ -172,7 +172,7 @@ void Init_gsl_sf_ellint(VALUE module)
   rb_define_module_function(module, "ellint_P",  rb_gsl_sf_ellint_P, -1);
   rb_define_module_function(module, "ellint_P_e",  rb_gsl_sf_ellint_P_e, 4);
   rb_define_module_function(module, "ellint_D",  rb_gsl_sf_ellint_D, -1);
-  rb_define_module_function(module, "ellint_D_e",  rb_gsl_sf_ellint_D_e, 4);
+  rb_define_module_function(module, "ellint_D_e",  rb_gsl_sf_ellint_D_e, 3);
   rb_define_module_function(module, "ellint_RC",  rb_gsl_sf_ellint_RC, -1);
   rb_define_module_function(module, "ellint_RC_e",  rb_gsl_sf_ellint_RC_e, 3);
   rb_define_module_function(module, "ellint_RD",  rb_gsl_sf_ellint_RD, -1);
@@ -194,7 +194,7 @@ void Init_gsl_sf_ellint(VALUE module)
   rb_define_module_function(mgsl_sf_ellint, "P",  rb_gsl_sf_ellint_P, -1);
   rb_define_module_function(mgsl_sf_ellint, "P_e",  rb_gsl_sf_ellint_P_e, 4);
   rb_define_module_function(mgsl_sf_ellint, "D",  rb_gsl_sf_ellint_D, -1);
-  rb_define_module_function(mgsl_sf_ellint, "D_e",  rb_gsl_sf_ellint_D_e, 4);
+  rb_define_module_function(mgsl_sf_ellint, "D_e",  rb_gsl_sf_ellint_D_e, 3);
   rb_define_module_function(mgsl_sf_ellint, "RC",  rb_gsl_sf_ellint_RC, -1);
   rb_define_module_function(mgsl_sf_ellint, "RC_e",  rb_gsl_sf_ellint_RC_e, 3);
   rb_define_module_function(mgsl_sf_ellint, "RD",  rb_gsl_sf_ellint_RD, -1);

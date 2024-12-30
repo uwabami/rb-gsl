@@ -1829,7 +1829,7 @@ static VALUE rb_gsl_vector_complex_block(VALUE obj)
   return Data_Wrap_Struct(cgsl_block_complex, 0, NULL, v->block);
 }
 
-static VALUE rb_gsl_vector_complex_indgen_bang(int argc, VALUE *argv[], VALUE obj)
+static VALUE rb_gsl_vector_complex_indgen_bang(int argc, VALUE argv[], VALUE obj)
 {
   gsl_vector_complex *v = NULL;
   double start = 0.0, step = 1.0, x;
@@ -2112,7 +2112,7 @@ void Init_gsl_vector_complex(VALUE module)
   rb_define_method(cgsl_vector_complex, "isnull", rb_gsl_vector_complex_isnull, 0);
 
   rb_define_method(cgsl_vector_complex, "matrix_view", rb_gsl_vector_complex_matrix_view, -1);
-  rb_define_method(cgsl_vector_complex, "matrix_view_with_tda", rb_gsl_vector_complex_matrix_view_with_tda, -1);
+  rb_define_method(cgsl_vector_complex, "matrix_view_with_tda", rb_gsl_vector_complex_matrix_view_with_tda, 3);
 
   rb_define_method(cgsl_vector_complex, "trans", rb_gsl_vector_complex_trans, 0);
   rb_define_alias(cgsl_vector_complex, "transpose", "trans");
@@ -2238,4 +2238,3 @@ void Init_gsl_vector_complex(VALUE module)
   rb_define_method(cgsl_vector_complex, "not_equal?", rb_gsl_vector_complex_not_equal, -1);
   rb_define_alias(cgsl_vector_complex, "!=", "not_equal?");
 }
-

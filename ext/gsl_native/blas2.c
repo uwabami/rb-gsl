@@ -1081,8 +1081,8 @@ void Init_gsl_blas2(VALUE module)
   rb_define_module_function(module, "zher!", rb_gsl_blas_zher, 4);
   rb_define_module_function(module, "zher", rb_gsl_blas_zher_a, 4);
 
-  rb_define_module_function(module, "dsyr2!", rb_gsl_blas_dsyr2, 4);
-  rb_define_module_function(module, "dsyr2", rb_gsl_blas_dsyr2_a, 4);
-  rb_define_module_function(module, "zher2!", rb_gsl_blas_zher2, 4);
-  rb_define_module_function(module, "zher2", rb_gsl_blas_zher2_a, 4);
+  rb_define_module_function(module, "dsyr2!", rb_gsl_blas_dsyr2, 5);
+  rb_define_module_function(module, "dsyr2", rb_gsl_blas_dsyr2_a, 5);
+  rb_define_module_function(module, "zher2!", rb_gsl_blas_zher2, 5);
+  rb_define_module_function(module, "zher2", rb_gsl_blas_zher2_a, 5);
 }

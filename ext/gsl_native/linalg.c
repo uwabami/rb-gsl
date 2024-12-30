@@ -92,13 +92,13 @@ static VALUE rb_gsl_linalg_LU_decomp_nmatrix(int argc, VALUE *argv, VALUE obj,
     rb_raise(rb_eRuntimeError, "square matrix required");
 
   if (flag == LINALG_DECOMP) {
-    m = rb_nmatrix_dense_create(FLOAT64, input_nmatrix->shape, 2, 
+    m = rb_nmatrix_dense_create(FLOAT64, input_nmatrix->shape, 2,
       input_nmatrix->elements, input_nmatrix->shape[0] * input_nmatrix->shape[1]);
     temp_nmatrix = NM_STORAGE_DENSE(m);
-    mv = gsl_matrix_view_array((double*)temp_nmatrix->elements, 
+    mv = gsl_matrix_view_array((double*)temp_nmatrix->elements,
       temp_nmatrix->shape[0], temp_nmatrix->shape[1]);
   } else {
-    mv = gsl_matrix_view_array((double*)input_nmatrix->elements, 
+    mv = gsl_matrix_view_array((double*)input_nmatrix->elements,
       input_nmatrix->shape[0], input_nmatrix->shape[1]);
   }
   p = gsl_permutation_alloc(mv.matrix.size1);
@@ -304,7 +304,7 @@ static VALUE rb_gsl_linalg_LU_solve_nmatrix(int argc, VALUE *argv, VALUE obj)
              argc);
   }
   input_nmatrix = NM_STORAGE_DENSE(argv[0]);
-  mv = gsl_matrix_view_array((double*) input_nmatrix->elements, 
+  mv = gsl_matrix_view_array((double*) input_nmatrix->elements,
     input_nmatrix->shape[0], input_nmatrix->shape[1]);
   CHECK_PERMUTATION(argv[1]);
   Data_Get_Struct(argv[1], gsl_permutation, p);
@@ -542,11 +542,11 @@ static VALUE rb_gsl_linalg_LU_invert_nmatrix(int argc, VALUE *argv, VALUE obj)
 
   CHECK_PERMUTATION(argv[1]);
   lu_nmatrix = NM_STORAGE_DENSE(argv[0]);
-  inv = rb_nmatrix_dense_create(FLOAT64, lu_nmatrix->shape, 2, 
+  inv = rb_nmatrix_dense_create(FLOAT64, lu_nmatrix->shape, 2,
     lu_nmatrix->elements, NM_DENSE_COUNT(argv[0]));
-  mv1 = gsl_matrix_view_array((double*)lu_nmatrix->elements, 
+  mv1 = gsl_matrix_view_array((double*)lu_nmatrix->elements,
     lu_nmatrix->shape[0], lu_nmatrix->shape[1]);
-  mv2 = gsl_matrix_view_array((double*)NM_DENSE_ELEMENTS(inv), 
+  mv2 = gsl_matrix_view_array((double*)NM_DENSE_ELEMENTS(inv),
     lu_nmatrix->shape[0], lu_nmatrix->shape[1]);
 
   Data_Get_Struct(argv[1], gsl_permutation, p);
@@ -620,7 +620,7 @@ static VALUE rb_gsl_linalg_LU_det_nmatrix(int argc, VALUE *argv, VALUE obj)
   /* no break */
   case 1:
     input_nmatrix = NM_STORAGE_DENSE(argv[0]);
-    mv = gsl_matrix_view_array((double*)input_nmatrix->elements, 
+    mv = gsl_matrix_view_array((double*)input_nmatrix->elements,
       input_nmatrix->shape[0], input_nmatrix->shape[1]);
     break;
   default:
@@ -965,7 +965,7 @@ static VALUE rb_gsl_linalg_QR_decomp_nmatrix(int argc, VALUE *argv, VALUE obj)
   shapem[0] = nm->shape[1];
   shapem[1] = nm->shape[1];
   shapev[0] = shapem[0];
-  qr = rb_nmatrix_dense_create(FLOAT64, shapem, 2, nm->elements, 
+  qr = rb_nmatrix_dense_create(FLOAT64, shapem, 2, nm->elements,
     shapem[0]*shapem[1]);
   tau = rb_nmatrix_dense_create(FLOAT64, shapev, 1, nm->elements, shapev[0]);
   mv = gsl_matrix_view_array((double*)NM_DENSE_ELEMENTS(qr), shapem[0], shapem[1]);
@@ -1696,10 +1696,10 @@ static VALUE rb_gsl_linalg_R_solve(int argc, VALUE *argv, VALUE obj)
 }
 
 /* singleton */
-static VALUE rb_gsl_linalg_QR_QRsolve(int argc, VALUE *argv, VALUE obj,
-                                      int flag)
+static VALUE rb_gsl_linalg_QR_QRsolve(VALUE argc, VALUE argv, VALUE obj,
+                                      VALUE flag)
 {
-  return rb_gsl_linalg_QRLQ_QRLQsolve(argc, argv, obj, LINALG_QR_DECOMP);
+  return rb_gsl_linalg_QRLQ_QRLQsolve((int)argc, &argv, obj, LINALG_QR_DECOMP);
 }
 
 static VALUE rb_gsl_linalg_LQ_Lsolve(int argc, VALUE *argv, VALUE obj)
@@ -1718,10 +1718,10 @@ static VALUE rb_gsl_linalg_L_solve(int argc, VALUE *argv, VALUE obj)
 }
 
 /* singleton */
-static VALUE rb_gsl_linalg_LQ_LQsolve(int argc, VALUE *argv, VALUE obj,
-                                      int flag)
+static VALUE rb_gsl_linalg_LQ_LQsolve(VALUE argc, VALUE argv, VALUE obj,
+                                      VALUE flag)
 {
-  return rb_gsl_linalg_QRLQ_QRLQsolve(argc, argv, obj, LINALG_LQ_DECOMP);
+  return rb_gsl_linalg_QRLQ_QRLQsolve((int)argc, &argv, obj, LINALG_LQ_DECOMP);
 }
 
 static VALUE rb_gsl_linalg_QRLQ_update(VALUE obj, VALUE qq, VALUE rr, VALUE ww,
@@ -4049,12 +4049,12 @@ void Init_gsl_linalg(VALUE module)
   rb_define_method(cgsl_matrix_QR, "Rsolve", rb_gsl_linalg_QR_Rsolve, -1);
 
   rb_define_module_function(mgsl_linalg_QR, "Rsvx", rb_gsl_linalg_QR_Rsvx, -1);
-  rb_define_method(cgsl_matrix_QR, "Rsvx", rb_gsl_linalg_QR_Rsvx, 1);
+  rb_define_method(cgsl_matrix_QR, "Rsvx", rb_gsl_linalg_QR_Rsvx, -1);
 
   rb_define_module_function(mgsl_linalg_QR, "unpack", rb_gsl_linalg_QR_unpack, -1);
   rb_define_method(cgsl_matrix_QR, "unpack", rb_gsl_linalg_QR_unpack, -1);
 
-  rb_define_module_function(mgsl_linalg_QR, "QRsolve", rb_gsl_linalg_QR_QRsolve, -1);
+  rb_define_module_function(mgsl_linalg_QR, "QRsolve", rb_gsl_linalg_QR_QRsolve, 3);
   rb_define_module_function(mgsl_linalg_QR, "update", rb_gsl_linalg_QR_update, 4);
 
   rb_define_method(mgsl_linalg, "R_solve", rb_gsl_linalg_R_solve, -1);
@@ -4250,12 +4250,12 @@ void Init_gsl_linalg(VALUE module)
   rb_define_method(cgsl_matrix_LQ, "Lsolve_T", rb_gsl_linalg_LQ_Lsolve, -1);
 
   rb_define_module_function(mgsl_linalg_LQ, "Lsvx_T", rb_gsl_linalg_LQ_Lsvx, -1);
-  rb_define_method(cgsl_matrix_LQ, "Lsvx_T", rb_gsl_linalg_LQ_Lsvx, 1);
+  rb_define_method(cgsl_matrix_LQ, "Lsvx_T", rb_gsl_linalg_LQ_Lsvx, -1);
 
   rb_define_module_function(mgsl_linalg_LQ, "unpack", rb_gsl_linalg_LQ_unpack, -1);
   rb_define_method(cgsl_matrix_LQ, "unpack", rb_gsl_linalg_LQ_unpack, -1);
 
-  rb_define_module_function(mgsl_linalg_LQ, "LQsolve_T", rb_gsl_linalg_LQ_LQsolve, -1);
+  rb_define_module_function(mgsl_linalg_LQ, "LQsolve_T", rb_gsl_linalg_LQ_LQsolve, 3);
   rb_define_module_function(mgsl_linalg_LQ, "update", rb_gsl_linalg_LQ_update, 4);
 
   rb_define_method(mgsl_linalg, "L_solve_T", rb_gsl_linalg_L_solve, -1);

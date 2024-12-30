@@ -731,9 +731,9 @@ void Init_gsl_narray(VALUE module)
   rb_define_alias(cNArray, "to_gslv_int_view", "to_gv_int_view");
   /*****/
 
-  rb_define_method(cgsl_matrix, "to_na", rb_gsl_matrix_to_na, 0);
+  rb_define_method(cgsl_matrix, "to_na", rb_gsl_matrix_to_na, 1);
   rb_define_alias(cgsl_matrix, "to_narray", "to_na");
-  rb_define_method(cgsl_matrix, "to_nm", rb_gsl_matrix_to_nmatrix, 0);
+  rb_define_method(cgsl_matrix, "to_nm", rb_gsl_matrix_to_nmatrix, 1);
   rb_define_alias(cgsl_matrix, "to_nmatrix", "to_nm");
   rb_define_method(cgsl_matrix, "to_na2", rb_gsl_matrix_to_na_ref, 0);
   rb_define_alias(cgsl_matrix, "to_na_ref", "to_na2");

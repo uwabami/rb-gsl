@@ -29,10 +29,10 @@ VALUE rb_tamu_anova_alloc(int argc, VALUE *argv, VALUE klass)
   return Data_Wrap_Struct(klass, 0, free, table);
 }
 
-VALUE rb_tamu_anova_printtable(VALUE *vTable)
+VALUE rb_tamu_anova_printtable(VALUE vTable)
 {
   struct tamu_anova_table *table;
-  Data_Get_Struct(*vTable, struct tamu_anova_table, table);
+  Data_Get_Struct(vTable, struct tamu_anova_table, table);
   tamu_anova_printtable(*table);
   return Qtrue;
 }

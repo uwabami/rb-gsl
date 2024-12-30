@@ -99,7 +99,7 @@ static void gsl_multiroot_function_mark(gsl_multiroot_function *f)
   size_t i;
   rb_gc_mark((VALUE) f->params);
   //  for (i = 0; i < RARRAY(f->params)->len; i++)
-  for (i = 0; (int) i < RARRAY_LEN(f->params); i++)
+  for (i = 0; (int) i < RARRAY_LEN((size_t)f->params); i++)
     rb_gc_mark(rb_ary_entry((VALUE) f->params, i));
 }
 
@@ -236,7 +236,7 @@ static void gsl_multiroot_function_fdf_mark(gsl_multiroot_function_fdf *f)
   size_t i;
   rb_gc_mark((VALUE) f->params);
   //  for (i = 0; i < RARRAY(f->params)->len; i++)
-  for (i = 0; (int) i < RARRAY_LEN(f->params); i++)
+  for (i = 0; (int) i < RARRAY_LEN((size_t)f->params); i++)
     rb_gc_mark(rb_ary_entry((VALUE) f->params, i));
 }
 
