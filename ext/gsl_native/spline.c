@@ -85,7 +85,7 @@ static VALUE rb_gsl_spline_init(VALUE obj, VALUE xxa, VALUE yya)
     size = nax->total;
     ptr1 = (double *) nax->ptr;
 #endif
-#ifdef HAVE_NARRAY_H
+#ifdef HAVE_NMATRIX_H
   } else if (NM_IsNMatrix(xxa)) {
     NM_DENSE_STORAGE *nmx = NULL;
     nmx = NM_STORAGE_DENSE(xxa);
@@ -108,7 +108,7 @@ static VALUE rb_gsl_spline_init(VALUE obj, VALUE xxa, VALUE yya)
     ptr2 = (double *) nay->ptr;
 #endif
 
-#ifdef HAVE_NARRAY_H
+#ifdef HAVE_NMATRIX_H
   } else if (NM_IsNMatrix(yya)) {
     NM_DENSE_STORAGE *nmy;
     nmy = NM_STORAGE_DENSE(yya);

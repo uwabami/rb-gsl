@@ -148,7 +148,7 @@ static VALUE rb_gsl_dht_xk_sample(VALUE obj, VALUE n,
       }
       return ary;
 #endif
-#ifdef HAVE_NARRAY_H
+#ifdef HAVE_NMATRIX_H
     } else if (NM_IsNMatrix(n)) {
       NM_DENSE_STORAGE *nm;
       int *ptr;
